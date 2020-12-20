@@ -1,0 +1,103 @@
+{
+  "data_asisten": [
+    {
+      "npm": 1234567,
+      "nama": "asdf",
+      "kata_sandi": "asdf",
+      "email": "asdf"
+    },
+    {
+      "npm": 1234567,
+      "nama": "qwer",
+      "kata_sandi": "qwer",
+      "email": "qwer"
+    },
+    {
+      "npm": 1234567,
+      "nama": "zxcv",
+      "kata_sandi": "zxcv",
+      "email": "zxcv"
+    },
+    {
+      "npm": 1234567,
+      "nama": "zxcv",
+      "kata_sandi": "zxcv",
+      "email": "zxcv"
+    }
+  ],
+  "data_pemakaian": [
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    },
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    },
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    },
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    },
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    },
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    },
+    {
+      "nama": "Syfa Maulidia",
+      "npm": "0643219292",
+      "alkohol": 200,
+      "spirtus": 100,
+      "aquades": 300,
+      "waktu": "20-10-2020 08:40"
+    }
+  ],
+  "data_bahan": [
+    {
+      "jenis": "alkohol",
+      "pemakaian": 200,
+      "sisa": 800
+    },
+    {
+      "jenis": "spritus",
+      "pemakaian": 400,
+      "sisa": 600
+    },
+    {
+      "jenis": "aquades",
+      "pemakaian": 800,
+      "sisa": 200
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TableComponent from "../../components/TableComponent";
 import arrayMove from "array-move";
-import { jsonToTable, dateTime, timestamp } from "../../helper";
+import { jsonToTable, dateTime, timestamp, DateToTm } from "../../helper";
 import { Box, Grid, makeStyles } from "@material-ui/core";
 import PaperBahan from "../../components/PaperBahan";
 import ActionButton from "../../components/ActionButton";
@@ -11,7 +11,10 @@ import {
   apiSetDataControl,
   apiAddDataPenambahan,
   apiAddDataPemakai,
+  apiRemoveTambahBahan,
 } from "../../helper/redux/action";
+import TooltipComponent from "../../components/TooltipComponent";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const door1 = "#4698DD";
 const door2 = "#48EA9C";
@@ -46,6 +49,7 @@ const Dashboard = ({
   dataSensors,
   dataPenambahan,
   addPemakai,
+  removeTambahBahan,
 }) => {
   const classes = useStyles();
   const [dataTable, setDataTable] = useState({ data: false, columns: false });
@@ -64,6 +68,11 @@ const Dashboard = ({
     { id: "box2", data: 0 },
     { id: "box3", data: 0 },
   ]);
+
+  const handleDelete = (value) => {
+    const tm = DateToTm(value);
+    removeTambahBahan(tm);
+  };
 
   const handleControl = (data) => {
     const id = data.label.replace(/\s/g, "").toLowerCase();
@@ -140,6 +149,28 @@ const Dashboard = ({
     }
     if (dataPenambahan) {
       const table = jsonToTable(dataPenambahan);
+      table.columns.push({
+        name: "waktu",
+        label: "DELETE",
+        options: {
+          filter: false,
+          sort: false,
+          empty: true,
+          customBodyRender: (value) => {
+            return (
+              <div>
+                <TooltipComponent
+                  title={`Delete ${value}`}
+                  onClick={() => handleDelete(value)}
+                  color="inherit"
+                >
+                  <DeleteIcon />
+                </TooltipComponent>
+              </div>
+            );
+          },
+        },
+      });
       const temp = arrayMove(table.columns, 2, 1);
       setDataTable({ data: table.data, columns: temp });
     }
@@ -215,6 +246,7 @@ const mapDispatchToProps = (dispatch) => {
     getControl: () => dispatch(apiGetDataControl()),
     setControl: (data) => dispatch(apiSetDataControl(data)),
     addPemakai: (data) => dispatch(apiAddDataPenambahan(data)),
+    removeTambahBahan: (data) => dispatch(apiRemoveTambahBahan(data)),
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TableComponent from "../../components/TableComponent";
 import arrayMove from "array-move";
-import { jsonToTable, dateTime, timestamp } from "../../helper";
+import { jsonToTable, dateTime, timestamp, DateToTm } from "../../helper";
 import { Box, Grid, makeStyles } from "@material-ui/core";
 import PaperBahan from "../../components/PaperBahan";
 import ActionButton from "../../components/ActionButton";
@@ -10,8 +10,12 @@ import {
   apiGetDataControl,
   apiSetDataControl,
   apiGetDataPemakai,
+  apiRemovePemakai,
   apiAddDataPemakai,
 } from "../../helper/redux/action";
+import TooltipComponent from "../../components/TooltipComponent";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { SettingsEthernet } from "@material-ui/icons";
 
 const door1 = "#4698DD";
 const door2 = "#48EA9C";
@@ -46,6 +50,8 @@ const Dashboard = ({
   dataSensors,
   dataPemakai,
   addPemakai,
+  removePemakai,
+  userLogin,
 }) => {
   const classes = useStyles();
   const [dataTable, setDataTable] = useState({ data: false, columns: false });
@@ -64,6 +70,13 @@ const Dashboard = ({
     { id: "box2", data: 0 },
     { id: "box3", data: 0 },
   ]);
+
+  const handleDelete = (value) => {
+    const row = value.rowData;
+    const tm = DateToTm(row[5]);
+    const data = { npm: row[1], tm };
+    removePemakai(data);
+  };
 
   const handleControl = (data) => {
     const id = data.label.replace(/\s/g, "").toLowerCase();
@@ -142,6 +155,32 @@ const Dashboard = ({
     }
     if (dataPemakai) {
       const table = jsonToTable(dataPemakai);
+      console.log(userLogin);
+      if (userLogin.status === "admin") {
+        table.columns.push({
+          name: "npm",
+          label: "DELETE",
+          options: {
+            filter: false,
+            sort: false,
+            empty: true,
+            customBodyRender: (value, data) => {
+              return (
+                <div>
+                  <TooltipComponent
+                    title={`Delete ${value}`}
+                    onClick={() => handleDelete(data)}
+                    color="inherit"
+                  >
+                    <DeleteIcon />
+                  </TooltipComponent>
+                </div>
+              );
+            },
+          },
+        });
+      }
+
       const temp = arrayMove(table.columns, 2, 0);
       const temp2 = arrayMove(temp, 3, 1);
       setDataTable({ data: table.data, columns: arrayMove(temp2, 3, 4) });
@@ -210,6 +249,7 @@ const mapStateToProps = (state) => {
     dataSensors: state.dataSensors,
     dataUsers: state.dataUsers,
     dataPemakai: state.dataPemakai,
+    userLogin: state.userLogin,
   };
 };
 
@@ -218,6 +258,7 @@ const mapDispatchToProps = (dispatch) => {
     getControl: () => dispatch(apiGetDataControl()),
     setControl: (data) => dispatch(apiSetDataControl(data)),
     addPemakai: (data) => dispatch(apiAddDataPemakai(data)),
+    removePemakai: (data) => dispatch(apiRemovePemakai(data)),
   };
 };
 

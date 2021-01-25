@@ -1,6 +1,6 @@
 const pad = (n) => (n < 10 ? `0${n}` : n);
 
-export const jsonToTable =  (datas) => {
+export const jsonToTable = (datas) => {
   if (datas !== 0) {
     let object = Object.keys(datas[0]);
     let columns = [];
@@ -19,12 +19,23 @@ export const jsonToTable =  (datas) => {
   return datas;
 };
 
-export const timestamp = ()=>{
+export const timestamp = () => {
   const dateTime = new Date();
-  return `${dateTime.getFullYear()}${pad(dateTime.getMonth()+1)}${pad(dateTime.getDate())}${pad(dateTime.getHours())}${pad(dateTime.getMinutes())}`
-}
+  return `${dateTime.getFullYear()}${pad(dateTime.getMonth() + 1)}${pad(
+    dateTime.getDate()
+  )}${pad(dateTime.getHours())}${pad(dateTime.getMinutes())}`;
+};
 
-export const dateTime = ()=>{
- const dateTime = new Date();
- return `${dateTime.getFullYear()}-${pad(dateTime.getMonth()+1)}-${pad(dateTime.getDate())} ${pad(dateTime.getHours())}:${pad(dateTime.getMinutes())}`
-}
+export const dateTime = () => {
+  const dateTime = new Date();
+  return `${dateTime.getFullYear()}-${pad(dateTime.getMonth() + 1)}-${pad(
+    dateTime.getDate()
+  )} ${pad(dateTime.getHours())}:${pad(dateTime.getMinutes())}`;
+};
+
+export const DateToTm = (time) => {
+  const dateTime = new Date(time);
+  return `${dateTime.getFullYear()}${pad(dateTime.getMonth() + 1)}${pad(
+    dateTime.getDate()
+  )}${pad(dateTime.getHours())}${pad(dateTime.getMinutes())}`;
+};

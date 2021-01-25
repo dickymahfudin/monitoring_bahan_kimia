@@ -83,7 +83,7 @@ const DataAsisten = ({ dataUsers, dataPemakaiTotal, removeUser }) => {
                 </TooltipComponent>
 
                 <TooltipComponent
-                  title={`Delet ${value}`}
+                  title={`Delete ${value}`}
                   onClick={() => handleDelete(value)}
                   color="inherit"
                 >

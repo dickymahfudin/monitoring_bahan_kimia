@@ -200,3 +200,11 @@ export const apiAddUser = (data) => (dispatch) => {
 export const apiRemoveUser = (data) => (dispatch) => {
   database.ref(`users/${data}`).remove();
 };
+
+export const apiRemovePemakai = (data) => (dispatch) => {
+  database.ref(`pemakai/${data.npm}/${data.tm}`).remove();
+};
+
+export const apiRemoveTambahBahan = (tm) => (dispatch) => {
+  database.ref(`penambahan/${tm}`).remove();
+};

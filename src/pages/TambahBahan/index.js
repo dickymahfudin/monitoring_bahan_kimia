@@ -140,7 +140,8 @@ const Dashboard = ({
     }
     if (dataPenambahan) {
       const table = jsonToTable(dataPenambahan);
-      setDataTable({ data: table.data, columns: table.columns });
+      const temp = arrayMove(table.columns, 2, 1);
+      setDataTable({ data: table.data, columns: temp });
     }
   }, [dataControl, dataSensors, dataPenambahan]);
 

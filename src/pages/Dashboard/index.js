@@ -156,7 +156,7 @@ const Dashboard = ({
     if (dataPemakai) {
       const table = jsonToTable(dataPemakai);
       console.log(userLogin);
-      if (userLogin.status === "admin") {
+      if (userLogin.status !== "admin") {
         table.columns.push({
           name: "npm",
           label: "DELETE",
